@@ -1,0 +1,89 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ body {
+  font-family: "Avenir Next";
+}
+li {
+  list-style: none;
+}
+
+/* □ ヘッダー部 */
+header {
+  background-color: #26d0c9;
+  color: #fff;
+  height: 90px;
+}
+.header-logo {
+  float: left;
+  font-size: 30px;
+  padding: 25px 20px;
+}
+.header-list li {
+  float: right;
+  padding: 33px 20px;
+}
+
+/* □ メイン部 */
+main {
+  padding: 100px 80px;
+}
+/* トップ画面 */
+.copy-container{
+  background-image: url(background_sample.png);
+  color: white;
+  text-align: center;
+}
+.copy-container h1 {
+  font-size: 120px;
+}
+.copy-container h2 {
+  font-size: 60px;
+}
+.apl-introduction {
+  height: 500px;
+  margin-top: 100px;
+}
+.apl-introduction img{
+  width: 60%;
+  height: 100%;
+}
+.articles{
+  clear: both;
+  margin: 50px auto;
+  width: 80%;
+  height: 100%;
+}
+.articles img{
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+.article-overview{
+  display: inline-block;
+}
+
+/* □ フッター部 */
+footer {
+  clear: both;
+  background-color: #2f5167;
+  color: #fff;
+  height: 30px;
+  padding: 15px;
+}
+.footer-logo {
+  float: left;
+  font-size: 15px;
+}
