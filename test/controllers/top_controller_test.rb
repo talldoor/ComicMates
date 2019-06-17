@@ -5,5 +5,4 @@ class TopControllerTest < ActionDispatch::IntegrationTest
     get top_home_url
     assert_response :success
   end
-
 end
