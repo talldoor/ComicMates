@@ -3,9 +3,22 @@ html
   head
     title
       | Comicmates
+    meta name="viewport" content="width=device-width, initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    header
+      nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+        .navbar-brand ComicMates
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            a.nav-link 新規登録
+          li.nav-item
+            a.nav-link ログイン
     = yield
+    footer.mt-auto.py-2.bg-dark.text-light
+      .container.text-center
+        p
+          small ©︎ComicMates
