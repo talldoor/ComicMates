@@ -11,12 +11,16 @@ html
   body
     header
       nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-        .navbar-brand ComicMates
+        = link_to 'ComicMates', root_path, class: "navbar-brand"
         ul.navbar-nav.ml-auto
-          li.nav-item
-            a.nav-link 新規登録
-          li.nav-item
-            a.nav-link ログイン
+          - if user_signed_in?
+            li.nav-item
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+          - else
+            li.nav-item
+              = link_to '新規登録', new_user_registration_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'ログイン', new_user_session_path, class: 'nav-link'
     = yield
     footer.mt-auto.py-2.bg-dark.text-light
       .container.text-center
