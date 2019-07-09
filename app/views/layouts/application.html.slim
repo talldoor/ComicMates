@@ -14,6 +14,9 @@ html
         = link_to 'ComicMates', root_path, class: "navbar-brand"
         ul.navbar-nav.ml-auto
           - if user_signed_in?
+            / ↓テストロジック（7/7時点　エラーに）
+            p.text-success  = current_user.name
+            / ↑テストロジック
             li.nav-item
               = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
           - else
@@ -21,6 +24,12 @@ html
               = link_to '新規登録', new_user_registration_path, class: 'nav-link'
             li.nav-item
               = link_to 'ログイン', new_user_session_path, class: 'nav-link'
+    - if notice
+      div.notice
+        = flash[:notice]
+    - elsif alert
+      div.alert
+        = flash[:alert]
     = yield
     footer.mt-auto.py-2.bg-dark.text-light
       .container.text-center
