@@ -1,0 +1,35 @@
+h2 ユーザプロフィールの参照画面(仮)
+
+div.container
+  table.table.table-hover
+    tbody
+      tr
+        th= User.human_attribute_name(:image)
+        td= image_tag @user.image.variant(resize:"128x128") if @user.image.attached?
+      tr
+        th= User.human_attribute_name(:id)
+        td= @user.id
+      tr
+        th= User.human_attribute_name(:name)
+        td= @user.name
+      tr
+        th= User.human_attribute_name(:email)
+        td= @user.email
+      tr
+        th= User.human_attribute_name(:self_introduction)
+        td= @user.self_introduction
+      tr
+        th= User.human_attribute_name(:my_book1)
+        td= @user.my_book1
+      tr
+        th= User.human_attribute_name(:my_book2)
+        td= @user.my_book2
+      tr
+        th= User.human_attribute_name(:my_book3)
+        td= @user.my_book3
+      tr
+        th= User.human_attribute_name(:created_at)
+        td= @user.created_at
+      tr
+        th= User.human_attribute_name(:updated_at)
+        td= @user.updated_at
