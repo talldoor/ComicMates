@@ -14,9 +14,13 @@ html
         = link_to 'ComicMates', root_path, class: "navbar-brand"
         ul.navbar-nav.ml-auto
           - if user_signed_in?
-            / ↓テストロジック（7/7時点　エラーに）
+            / ↓テストロジック
             p.text-success  = current_user.name
+            p ・・・
+            p.text-success  = current_user.email
             / ↑テストロジック
+            li.nav-item
+              = link_to '設定', edit_user_registration_path, class: 'nav-link'
             li.nav-item
               = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
           - else
