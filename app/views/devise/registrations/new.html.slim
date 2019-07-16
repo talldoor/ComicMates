@@ -14,7 +14,7 @@
             .form-group
               = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: 'メールアドレス'
             .form-group
-              = f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード（6文字以上）'
+              = f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード（６文字以上）'
               / ↓テストロジック（7/9時点　現状必要ないのでコメントアウトしておく）
               / - if @minimum_password_length
               /   small.form-text.text-muted
