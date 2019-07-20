@@ -20,6 +20,10 @@ html
             p.text-success  = current_user.email
             / ↑テストロジック
             li.nav-item
+              = link_to '記事一覧', articles_path, class: 'nav-link'
+            li.nav-item
+              = link_to '記事投稿', new_article_path, class: 'nav-link'
+            li.nav-item
               = link_to '設定', edit_user_registration_path, class: 'nav-link'
             li.nav-item
               = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'

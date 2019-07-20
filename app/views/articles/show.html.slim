@@ -1,0 +1,29 @@
+h2 記事詳細画面（参照）
+= link_to '編集', edit_article_path(@article), class: 'btn btn-primary mr-3'
+= link_to '削除', article_path(@article), method: :delete, data: { confirm: "「#{@article.comic_title}」の記事を削除します。よろしいですか？" }, class: 'btn btn-danger'
+table.table.table-hover
+  tbody
+    tr
+      th この記事を書いたユーザー
+      td= @article.user.name
+    tr
+      th= Article.human_attribute_name(:image)
+      td= image_tag @article.image.variant(resize:"128x128") if @article.image.attached?
+    tr
+      th= Article.human_attribute_name(:comic_title)
+      td= @article.comic_title
+    tr
+      th= Article.human_attribute_name(:comic_author)
+      td= @article.comic_author
+    tr
+      th= Article.human_attribute_name(:overview)
+      td= @article.overview
+    tr
+      th= Article.human_attribute_name(:detail)
+      td= @article.detail
+    tr
+      th= Article.human_attribute_name(:created_at)
+      td= @article.created_at
+    tr
+      th= Article.human_attribute_name(:updated_at)
+      td= @article.updated_at

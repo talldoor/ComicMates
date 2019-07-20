@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'top#index'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -11,5 +13,5 @@ Rails.application.routes.draw do
 
   get 'setting/show', to: 'users#show'
 
-  root to: 'top#index'
+  resources :articles
 end

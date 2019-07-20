@@ -7,6 +7,17 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      article: 記事
+    attributes:
+      article:
+        comic_title: コミックタイトル
+        comic_author: 著者
+        overview: 概要
+        detail: 詳細
+        created_at: 登録日時
+        updated_at: 更新日時
+        image: 作品画像
   date:
     abbr_day_names:
     - 日
