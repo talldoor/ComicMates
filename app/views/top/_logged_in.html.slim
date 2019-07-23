@@ -1,0 +1,33 @@
+h3 ---
+h3 ログインしてます
+h3 ---
+
+main
+  .container
+    h3 = current_user.name + 'さんのホーム'
+    = link_to edit_user_registration_path do
+      - if current_user.image.attached?
+        = image_tag current_user.image.variant(resize: '64x64')
+      - else
+        = image_tag  '/assets/user_dummy.png', size: '64x64'
+  .container
+    ul.nav.nav-tabs.py-4
+      li.nab-item
+        = link_to '全投稿記事', '#tab1', data: {toggle: 'tab'} , class: 'nav-link active'
+      li.nab-item
+        = link_to '自分の投稿記事', '#tab2', data: {toggle: 'tab'}, class: 'nav-link'
+      li.nab-item
+        = link_to 'フォロー', '#tab3', data: {toggle: 'tab'}, class: 'nav-link'
+      li.nab-item
+        = link_to 'フォロワー', '#tab4', data: {toggle: 'tab'}, class: 'nav-link'
+      li.nab-item
+        = link_to 'いいね', '#tab5', data: {toggle: 'tab'}, class: 'nav-link'
+      li.nab-item
+        = link_to 'コメント', '#tab6', data: {toggle: 'tab'}, class: 'nav-link'
+    .tab-content.py-4.bg-light
+      .all-articles#tab1.tab-pane.active
+        = render partial: 'article_cards', locals: { articles: @articles }
+        = paginate @articles
+      .my-articles#tab2.tab-pane
+        = render partial: 'article_cards', locals: { articles: @my_articles }
+        = paginate @my_articles

@@ -8,7 +8,7 @@ table.table.table-hover
       th= Article.human_attribute_name(:overview)
       th= Article.human_attribute_name(:detail)
       th= Article.human_attribute_name(:created_at)
-      th= Article.human_attribute_name(:created_at)
+      th= Article.human_attribute_name(:updated_at)
       th
   tbody
     - @articles.each do |article|
@@ -19,6 +19,6 @@ table.table.table-hover
         td= article.overview
         td= article.detail
         td= article.created_at
-        td= article.created_at
+        td= article.updated_at
         td
           = link_to '詳細', article_path(article), class: 'btn btn-primary mr-3'
