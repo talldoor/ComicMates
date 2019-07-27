@@ -1,0 +1,26 @@
+= form_with model: @article, local: true do |f|
+  .form-group
+    = f.label :comic_title, '漫画タイトル（必須）'
+    = f.text_field :comic_title, class: 'form-control'
+  .form-group
+    = f.label :comic_author
+    = f.text_field :comic_author, class: 'form-control'
+  .form-group
+    = f.label :overview, '一言でどんな作品？'
+    = f.text_area :overview, rows: 2, class: 'form-control', placeholder: '例）群像劇　恋愛もの'
+  .form-group
+    = f.label :detail, '感想'
+    = f.text_area :detail, rows: 5, class: 'form-control', placeholder: 'レビューや感想を書く'
+  - if local_assigns[:edit_flag].present?
+    - if @article.image.attached?
+      = image_tag @article.image.variant(resize:"128x128")
+    - else
+      = image_tag '/assets/comic_dummy.png', class: 'comic-image-default', size: '128x128'
+  .form-group
+    = f.label :image
+    = f.file_field :image, class: 'form-control'
+    br
+  - if local_assigns[:edit_flag].present?
+    = f.submit '更新する', class: 'btn btn-primary'
+  - else
+    = f.submit '投稿する', class: 'btn btn-primary'

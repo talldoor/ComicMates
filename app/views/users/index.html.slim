@@ -1,0 +1,17 @@
+h3 ユーザ一覧画面
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= User.human_attribute_name(:image)
+      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:updated_at)
+      th
+  tbody
+    - @users.each do |user|
+      tr
+        td= image_tag user.image.variant(resize:"64x64") if user.image.attached?
+        td= user.name
+        td= user.updated_at
+        td
+          = link_to '詳細', user_path(user), class: 'btn btn-primary mr-3'
+= paginate @users

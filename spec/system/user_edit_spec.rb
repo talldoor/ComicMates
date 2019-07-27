@@ -37,8 +37,6 @@ describe 'ユーザ情報変更機能', type: :system do
         fill_in 'メールアドレス', with: 'test111@example.com'
         click_button '更新する'
         expect(page).to have_content 'アカウント情報を変更しました'
-        expect(page).to have_content 'テストユーザー変更後'
-        expect(page).to have_content 'test111@example.com'
       end
     end
 
