@@ -1,10 +1,9 @@
 class ArticlesController < ApplicationController
-  def index
-    @articles = current_user.articles
-  end
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :find_article, only: [:edit, :update, :destroy]
 
   def show
-    @article = current_user.articles.find(params[:id])
+    @article = Article.find_by(id: params[:id])
   end
 
   def new
@@ -12,7 +11,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = current_user.articles.find(params[:id])
   end
 
   def create
@@ -29,7 +27,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = current_user.articles.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = '記事を更新しました。'
       redirect_to article_path(@article)
@@ -39,13 +36,16 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = current_user.articles.find(params[:id])
     @article.destroy
     flash[:notice] = "記事を削除しました。"
     redirect_to root_path
   end
 
   private
+
+  def find_article
+    @article = current_user.articles.find(params[:id])
+  end
 
   def article_params
     params.require(:article).permit(:comic_title, :comic_author,

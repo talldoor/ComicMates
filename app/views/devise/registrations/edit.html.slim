@@ -1,17 +1,10 @@
 = bootstrap_devise_error_messages!
 div.container
-  nav.navbar.navbar-expand-md
-    ul.navbar-nav
-      li.nav-item
-        = link_to 'プロフィール', edit_user_registration_path, class: 'nav-link'
-      li.nav-item
-        = link_to 'アカウント', setting_account_path, class: 'nav-link'
-      li.nav-item
-        = link_to 'パスワード', setting_password_path, class: 'nav-link'
+  = render 'shared/profile_menu'
   h2 プロフィール変更画面
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     - if @user.image.attached?
-      = image_tag @user.image.variant(resize: "64x64")
+      = image_tag @user.image.variant(resize: '64x64')
     - else
       = image_tag '/assets/user_dummy.png', class: 'profile-image-default', size: '64x64'
     .form-group

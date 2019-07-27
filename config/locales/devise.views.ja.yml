@@ -1,20 +1,4 @@
 ja:
-  activerecord:
-    attributes:
-      user:
-        current_password: "現在のパスワード"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "確認用パスワード"
-        remember_me: "ログインを記憶"
-        image: プロフィール画像
-        name: "ユーザーネーム"
-        my_book1: "マイベストコミック１"
-        my_book2: "マイベストコミック２"
-        my_book3: "マイベストコミック３"
-        self_introduction: "自己紹介"
-    models:
-      user: "ユーザ"
   devise:
     confirmations:
       new:

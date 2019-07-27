@@ -3,35 +3,13 @@ html
   head
     title
       | Comicmates
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name='viewport' content='width=device-width, initial-scale=1'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header
-      nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-        = link_to 'ComicMates', root_path, class: "navbar-brand"
-        ul.navbar-nav.ml-auto
-          - if user_signed_in?
-            / ↓テストロジック
-            p.text-success  = current_user.name
-            p ・・・
-            p.text-success  = current_user.email
-            / ↑テストロジック
-            li.nav-item
-              = link_to '記事一覧', articles_path, class: 'nav-link'
-            li.nav-item
-              = link_to '記事投稿', new_article_path, class: 'nav-link'
-            li.nav-item
-              = link_to '設定', edit_user_registration_path, class: 'nav-link'
-            li.nav-item
-              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
-          - else
-            li.nav-item
-              = link_to '新規登録', new_user_registration_path, class: 'nav-link'
-            li.nav-item
-              = link_to 'ログイン', new_user_session_path, class: 'nav-link'
+    = render 'layouts/header'
     - if notice
       div.notice
         = flash[:notice]
@@ -39,7 +17,4 @@ html
       div.alert
         = flash[:alert]
     = yield
-    footer.mt-auto.py-2.bg-dark.text-light
-      .container.text-center
-        p
-          small ©︎ComicMates
+    = render 'layouts/footer'

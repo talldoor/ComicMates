@@ -5,13 +5,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
   }
-
+  resources :users, only: [:index, :show]
   get 'setting/password', to: 'users#edit_password'
   patch 'setting/password', to: 'users#update_password'
   get 'setting/account', to: 'users#edit_account'
   patch 'setting/account', to: 'users#update_account'
 
-  get 'setting/show', to: 'users#show'
-
-  resources :articles
+  resources :articles, except: [:index]
 end

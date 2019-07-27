@@ -1,6 +1,7 @@
 h2 記事詳細画面（参照）
-= link_to '編集', edit_article_path(@article), class: 'btn btn-primary mr-3'
-= link_to '削除', article_path(@article), method: :delete, data: { confirm: "「#{@article.comic_title}」の記事を削除します。よろしいですか？" }, class: 'btn btn-danger'
+- if current_user ==  @article.user
+  = link_to '編集', edit_article_path(@article), class: 'btn btn-primary mr-3'
+  = link_to '削除', article_path(@article), method: :delete, data: { confirm: "「#{@article.comic_title}」の記事を削除します。よろしいですか？" }, class: 'btn btn-danger'
 table.table.table-hover
   tbody
     tr

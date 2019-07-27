@@ -1,15 +1,5 @@
-h3 ---
-h3 ログインしてます
-h3 ---
-
 main
-  .container
-    h3 = current_user.name + 'さんのホーム'
-    = link_to edit_user_registration_path do
-      - if current_user.image.attached?
-        = image_tag current_user.image.variant(resize: '64x64')
-      - else
-        = image_tag  '/assets/user_dummy.png', size: '64x64'
+  = render 'shared/profile_board'
   .container
     ul.nav.nav-tabs.py-4
       li.nab-item

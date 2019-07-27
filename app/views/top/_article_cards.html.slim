@@ -2,6 +2,11 @@
   .card-columns
     - articles.each do |article|
       .card
+        - if article.user.image.attached?
+          = image_tag article.user.image.variant(resize: "32x32")
+        - else
+          = image_tag 'user_dummy.png', size: '32x32'
+        p = article.user.name
         = link_to article_path(article) do
           - if article.image.attached?
             = image_tag article.image, class:'card-img-top img-fluid'
@@ -12,3 +17,6 @@
             = article.comic_title
           p.card-text
             = article.overview
+          p.card-text
+            = article.updated_at
+
