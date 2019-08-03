@@ -15,13 +15,23 @@ describe 'ユーザ情報変更機能', type: :system do
     context '正しい情報を入力した場合' do
       it '画像とマイベストと自己紹介を登録' do
         file_path = Rails.root.join('spec', 'images', 'test_sample.png')
-        attach_file 'プロフィール画像', file_path
-        fill_in 'マイベストコミック１', with: 'データ１'
-        fill_in 'マイベストコミック２', with: 'データ２'
-        fill_in 'マイベストコミック３', with: 'データ３'
+        attach_file 'profile_image', file_path
+        fill_in 'my_best1', with: 'データ１'
+        fill_in 'my_best2', with: 'データ２'
+        fill_in 'my_best3', with: 'データ３'
         fill_in '自己紹介', with: 'じこしょうかいぶん'
         click_button '更新する'
         expect(page).to have_content 'アカウント情報を変更しました'
+      end
+
+      it '「画像を削除」にチェックを入れて画像を削除' do
+        file_path = Rails.root.join('spec', 'images', 'test_sample.png')
+        attach_file 'profile_image', file_path
+        click_button '更新する'
+        check '画像を削除'
+        click_button '更新する'
+        expect(page).to have_content 'アカウント情報を変更しました'
+        expect(page).to have_css('img.profile-image-default')
       end
     end
   end

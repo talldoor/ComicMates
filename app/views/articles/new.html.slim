@@ -1,2 +1,7 @@
-h2 記事投稿画面
-= render partial: 'form', locals: { article: @article }
+.container.mt-5
+  .row
+    .col-md-2
+    .col-md-8.border
+      h4.text-center.mt-4 新規投稿
+      = render partial: 'form', locals: { article: @article }
+    .col-md-2

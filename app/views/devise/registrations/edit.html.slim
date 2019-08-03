@@ -1,26 +1,42 @@
 = bootstrap_devise_error_messages!
-div.container
-  = render 'shared/profile_menu'
-  h2 プロフィール変更画面
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    - if @user.image.attached?
-      = image_tag @user.image.variant(resize: '64x64')
-    - else
-      = image_tag '/assets/user_dummy.png', class: 'profile-image-default', size: '64x64'
-    .form-group
-      = f.label :image
-      = f.file_field :image, class: 'form-control'
-    .form-group
-      = f.label :my_book1
-      = f.text_field :my_book1, class: 'form-control'
-    .form-group
-      = f.label :my_book2
-      = f.text_field :my_book2, class: 'form-control'
-    .form-group
-      = f.label :my_book3
-      = f.text_field :my_book3, class: 'form-control'
-    .form-group
-      = f.label :self_introduction
-      = f.text_area :self_introduction, class: 'form-control'
-    .form-group
-      = f.submit '更新する', class: 'btn btn-primary'
+.container.mt-5
+  .row.no-gutters
+    .col-md-3
+      = render 'shared/profile_sidebar'
+    .col-md-9
+      .border#page-content-wrapper
+        h4.text-center.mt-4 プロフィール情報
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          .mx-md-5
+            .mt-5.user-setting-image
+              .text-center
+                - if @user.profile_image.attached?
+                  = image_tag @user.profile_image, class: 'rounded-circle'
+                - else
+                  = image_tag '/assets/user_dummy.png', class: 'profile-image-default'
+              .form-group.mt-5
+                = f.file_field :new_profile_image, class: 'form-control-file', id: 'profile_image'
+              .form-check
+                = f.check_box :remove_profile_image, class: 'form-check-input'
+                = f.label :remove_profile_image, class: 'form-check-label'
+            .form-group.mt-5
+              = f.label 'お気に入り作品　ベスト3', class: 'form-label'
+              .input-group
+                .input-group-prepend
+                  span.input-group-text １
+                = f.text_field :my_book1, class: 'form-control', id: 'my_best1'
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text ２
+                = f.text_field :my_book2, class: 'form-control', id: 'my_best2'
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text ３
+                = f.text_field :my_book3, class: 'form-control', id: 'my_best3'
+            .form-group.mt-5
+              = f.label :self_introduction
+              = f.text_area :self_introduction, rows: 4, class: 'form-control'
+            .form-group.text-center.my-5
+              = f.submit '更新する', class: 'btn btn-primary'

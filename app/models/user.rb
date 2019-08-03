@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :articles, dependent: :destroy
-
-  has_one_attached :image
+  has_one_attached :profile_image
+  attribute :new_profile_image
+  attribute :remove_profile_image, :boolean
 
   validates :name, presence: true, length: { maximum: 20 }
 
@@ -10,7 +11,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  paginates_per 5
+  before_save do
+    if new_profile_image
+      self.profile_image = new_profile_image
+    elsif remove_profile_image
+      profile_image.purge
+    end
+  end
+
+  paginates_per 10
 
   scope :recent, -> { order(updated_at: :desc) }
 end

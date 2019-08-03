@@ -4,5 +4,5 @@ main
       h1.display-2 ComicMates
       p.lead お気に入りの漫画をシェアしよう
   .py-4.bg-light
-    = render partial: 'article_cards', locals: { articles: @articles }
+    = render partial: 'shared/article_cards', locals: { articles: @articles }
     = paginate @articles

@@ -1,10 +1,10 @@
-.container
-  h3 = current_user.name + 'さんのホーム'
-  = link_to edit_user_registration_path do
-    - if current_user.image.attached?
-      = image_tag current_user.image.variant(resize: '64x64')
-    - else
-      = image_tag  '/assets/user_dummy.png', size: '64x64'
-  / ↓テストロジック
-  / 新規登録直後はマイベストは設定していないのでnilエラーになる。対処が必要
-  / p = 'マイベストコミック：' + current_user.my_book1 + '　'+ current_user.my_book2 + '　' + current_user.my_book3
+.container.my-5
+  .row#user-info-wrapper
+    .col-md-4.text-center
+      = link_to edit_user_registration_path do
+        - if current_user.profile_image.attached?
+          = image_tag current_user.profile_image, class: 'rounded-circle'
+        - else
+          = image_tag  '/assets/user_dummy.png', class: 'rounded-circle'
+    .col-md-8.pl-5
+      h3 = current_user.name + ' さんのホーム'

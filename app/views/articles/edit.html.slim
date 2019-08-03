@@ -1,2 +1,7 @@
-h2 記事編集画面（既に登録されたものを変更）
-= render partial: 'form', locals: { article: @article, edit_flag: true }
+.container.mt-5
+  .row
+    .col-md-2
+    .col-md-8.border
+      h4.text-center.mt-4 記事編集
+      = render partial: 'form', locals: { article: @article, edit_flag: true }
+    .col-md-2

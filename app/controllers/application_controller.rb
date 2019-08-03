@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     ]
     updated_attrs = [
       :my_book1, :my_book2, :my_book3, :self_introduction,
-      :image,
+      :new_profile_image, :remove_profile_image,
     ]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:account_update, keys: updated_attrs)

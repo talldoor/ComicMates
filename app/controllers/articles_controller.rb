@@ -49,6 +49,6 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:comic_title, :comic_author,
-                                    :overview, :detail, :image)
+                                    :overview, :detail, :new_comic_image, :remove_comic_image)
   end
 end

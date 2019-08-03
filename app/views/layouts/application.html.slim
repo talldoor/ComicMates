@@ -11,10 +11,10 @@ html
   body
     = render 'layouts/header'
     - if notice
-      div.notice
+      .notice
         = flash[:notice]
     - elsif alert
-      div.alert
+      .alert
         = flash[:alert]
     = yield
     = render 'layouts/footer'
