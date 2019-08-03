@@ -1,12 +1,12 @@
-.container
+.container.mt-4
   .row
-    .col-sm-3
-    .col-sm-6
+    .col-md-3
+    .col-md-6
       .card.text-center.my-4
         .card-header
           h2
             = t('.sign_in')
-        .card-body
+        .card-body.my-3
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form-group
               = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: 'メールアドレス'
@@ -14,7 +14,6 @@
               = f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード'
             .form-group
               = f.submit  t('.sign_in'), class: 'btn btn-primary btn-block'
-            = render 'devise/shared/links'
-          p ーーーー　または　ーーーー
-          = button_tag 'テストユーザーでログイン', class: 'btn btn-success btn-block'
-    .col-sm-3
+          = render 'devise/shared/links'
+          = render 'devise/shared/test_login'
+    .col-md-3
