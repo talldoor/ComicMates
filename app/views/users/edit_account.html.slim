@@ -6,12 +6,16 @@
       .border#page-content-wrapper
         h4.text-center.mt-4 アカウント情報
         .mx-md-5
-          = form_with model: @user, url: setting_account_path, local: true do |f|
-            .form-group.mt-5
-              = f.label :name
-              = f.text_field :name, class: 'form-control'
-            .form-group.mt-4
-              = f.label :email
-              = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-            .form-group.text-center.my-5
-              = f.submit '更新する', class: 'btn btn-primary'
+          - if current_user.email == 'testuser@vwxyz.com'
+            h6.text-center.text-muted.mt-5
+              | ※テストユーザーはアカウント情報を変更できません。
+          - else
+            = form_with model: @user, url: setting_account_path, local: true do |f|
+              .form-group.mt-5
+                = f.label :name
+                = f.text_field :name, class: 'form-control'
+              .form-group.mt-4
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+              .form-group.text-center.my-5
+                = f.submit '更新する', class: 'btn btn-primary'
