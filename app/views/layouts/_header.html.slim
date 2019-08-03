@@ -1,20 +1,30 @@
 header
   nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-    = link_to 'ComicMates', root_path, class: "navbar-brand"
-    ul.navbar-nav.ml-auto
-      - if user_signed_in?
-        li.nav-item
-          = link_to '記事を探す', '###', class: 'nav-link'
-        li.nav-item
-          = link_to 'ユーザ一を探す', users_path, class: 'nav-link'
-        li.nav-item
-          = link_to '記事投稿', new_article_path, class: 'nav-link'
-        li.nav-item
-          = link_to '設定', edit_user_registration_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
-      - else
-        li.nav-item
-          = link_to '新規登録', new_user_registration_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'ログイン', new_user_session_path, class: 'nav-link'
+    .container
+      = link_to 'ComicMates', root_path, class: "navbar-brand"
+      button.navbar-toggler type='button' data-toggle='collapse' data-target='#navbar-menu'
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbar-menu
+        ul.navbar-nav.ml-auto
+          - if user_signed_in?
+            li.nav-item
+              = link_to 'ユーザ一を探す', users_path, class: 'nav-link'
+            li.nav-item
+              = link_to '記事を探す', '###', class: 'nav-link'
+            li.nav-item
+              = link_to '投稿する', new_article_path, class: 'nav-link'
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle#navbarDropdown role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+                - if current_user.profile_image.attached?
+                  = image_tag current_user.profile_image, class: 'rounded-circle'
+                - else
+                  = image_tag '/assets/user_dummy.png', class: 'rounded-circle'
+              .dropdown-menu aria-labelledby='navbarDropdown'
+                = link_to 'ホーム', root_path, class: 'dropdown-item'
+                = link_to '設定', edit_user_registration_path, class: 'dropdown-item'
+                = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+          - else
+            li.nav-item
+              = link_to '新規登録', new_user_registration_path, class: 'nav-link'
+            li.nav-item
+              = link_to 'ログイン', new_user_session_path, class: 'nav-link'

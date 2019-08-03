@@ -1,26 +1,30 @@
-= form_with model: @article, local: true do |f|
-  .form-group
-    = f.label :comic_title, '漫画タイトル（必須）'
-    = f.text_field :comic_title, class: 'form-control'
-  .form-group
-    = f.label :comic_author
-    = f.text_field :comic_author, class: 'form-control'
-  .form-group
-    = f.label :overview, '一言でどんな作品？'
-    = f.text_area :overview, rows: 2, class: 'form-control', placeholder: '例）群像劇　恋愛もの'
-  .form-group
-    = f.label :detail, '感想'
-    = f.text_area :detail, rows: 5, class: 'form-control', placeholder: 'レビューや感想を書く'
-  - if local_assigns[:edit_flag].present?
-    - if @article.image.attached?
-      = image_tag @article.image.variant(resize:"128x128")
-    - else
-      = image_tag '/assets/comic_dummy.png', class: 'comic-image-default', size: '128x128'
-  .form-group
-    = f.label :image
-    = f.file_field :image, class: 'form-control'
-    br
-  - if local_assigns[:edit_flag].present?
-    = f.submit '更新する', class: 'btn btn-primary'
-  - else
-    = f.submit '投稿する', class: 'btn btn-primary'
+  = form_with model: @article, local: true do |f|
+    .mx-md-5
+      .mt-5#article-comic-image
+        .text-center
+          - if local_assigns[:edit_flag].present?
+            - if @article.comic_image.attached?
+              = image_tag @article.comic_image
+            - else
+              = image_tag '/assets/comic_dummy.png', class: 'comic-image-default'
+        .form-group.mt-3
+          = f.label :new_comic_image, '作品の画像'
+          = f.file_field :new_comic_image, class: 'form-control'
+        - if local_assigns[:edit_flag].present?
+          .form-check
+            = f.check_box :remove_comic_image, class: 'form-check-input'
+            = f.label :remove_comic_image, class: 'form-check-label'
+      .form-group.mt-5
+        = f.label :comic_title, '漫画タイトル（必須）'
+        = f.text_field :comic_title, class: 'form-control'
+      .form-group.mt-3
+        = f.label :comic_author
+        = f.text_field :comic_author, class: 'form-control'
+      .form-group.mt-3
+        = f.label :overview, '一言でどんな作品？'
+        = f.text_area :overview, rows: 2, class: 'form-control', placeholder: '例）群像劇　歴史もの'
+      .form-group.mt-3
+        = f.label :detail, '感想'
+        = f.text_area :detail, rows: 5, class: 'form-control', placeholder: 'レビューや感想を書く'
+      .form-group.text-center.my-5
+        = f.submit '更新する', class: 'btn btn-primary'

@@ -1,0 +1,18 @@
+.container.mt-5
+  .row#user-info-wrapper
+    .col-md-4.text-center
+      - if user.profile_image.attached?
+        = image_tag user.profile_image, class: 'rounded-circle'
+      - else
+        = image_tag  '/assets/user_dummy.png', class: 'rounded-circle'
+      br
+      button.btn.btn-info.my-3 フォロー
+    .col-md-8.pl-5
+      h3 = user.name + ' さん'
+      p.mt-4 = user.self_introduction
+      p.mt-4
+        small マイベストコミックス
+      .d-flex.flex-row.justify-content-start
+        small.border.mx-2.p-1 = user.my_book1
+        small.border.mx-2.p-1 = user.my_book2
+        small.border.mx-2.p-1 = user.my_book3

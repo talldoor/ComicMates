@@ -1,0 +1,9 @@
+- users.each do |user|
+  .col-md-6.my-2
+    .media.border#user-media
+      - if user.profile_image.attached?
+        = image_tag user.profile_image, class: 'rounded-circle mr-4 p-1'
+      - else
+        = image_tag '/assets/user_dummy.png', class: 'rounded-circle mr-4 p-1'
+      .media-body.mt-2
+        = link_to user.name, user

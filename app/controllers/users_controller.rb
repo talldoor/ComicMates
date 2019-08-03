@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @user_articles = @user.articles.recent.page(params[:page])
   end
 
   def edit_account
