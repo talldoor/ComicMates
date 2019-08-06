@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   patch 'setting/account', to: 'users#update_account'
 
   resources :articles, except: [:index]
+  resources :relationships, only: [:create, :destroy]
 end

@@ -1,5 +1,11 @@
 .container
   = render partial: 'shared/other_profile_board', locals: { user: @user }
+  / ↓テストロジック
+  p フォロー数
+  = @user.following.count
+  p フォロワー数
+  = @user.followers.count
+  / ↑
   .container
     ul.nav.nav-tabs.pt-4
       li.nab-item

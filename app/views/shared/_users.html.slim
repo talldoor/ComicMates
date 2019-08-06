@@ -7,3 +7,6 @@
         = image_tag '/assets/user_dummy.png', class: 'rounded-circle mr-4 p-1'
       .media-body.mt-2
         = link_to user.name, user
+        - unless current_user == user
+          = render partial: 'shared/follow_form', locals: { user: user }
+
