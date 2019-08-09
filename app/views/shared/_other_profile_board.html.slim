@@ -1,4 +1,4 @@
-.container.mt-5
+.container.my-5
   .row#user-info-wrapper
     .col-md-4.text-center
       - if user.profile_image.attached?
@@ -6,7 +6,8 @@
       - else
         = image_tag  '/assets/user_dummy.png', class: 'rounded-circle'
       br
-      button.btn.btn-info.my-3 フォロー
+      - unless current_user == user
+        = render partial: 'shared/follow_form', locals: { user: user }
     .col-md-8.pl-5
       h3 = user.name + ' さん'
       p.mt-4 = user.self_introduction

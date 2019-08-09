@@ -1,0 +1,26 @@
+ul.nav.nav-tabs
+  li.nab-item
+    = link_to user_path(@user, tab: 'user_articles'),
+              class: tab_active?('user_articles', initial_tab: true) do
+      small 投稿記事
+      span.badge
+        = @user_articles_count
+  li.nab-item
+    = link_to user_path(@user, tab: 'favorites'),
+              class: tab_active?('favorites') do
+      small お気に入り
+      /↓未実装
+      / span.badge
+      /   = @user_articles_count
+  li.nab-item
+    = link_to user_path(@user, tab: 'followers'),
+              class: tab_active?('followers') do
+      small フォロワー
+      span.badge
+        = @followers_count
+  li.nab-item
+    = link_to user_path(@user, tab: 'following'),
+              class: tab_active?('following') do
+      small フォロー
+      span.badge
+        = @following_count
