@@ -5,4 +5,6 @@ main
       p.lead お気に入りの漫画をシェアしよう
   .py-4.bg-light
     = render partial: 'shared/article_cards', locals: { articles: @articles }
-    = paginate @articles
+    .row.mt-4
+      .mx-auto
+        = paginate @articles

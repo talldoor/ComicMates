@@ -2,17 +2,50 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-/* 全体共通 */
+/* 共通 */
 a {
-  color:black;
+  color: black;
 }
-
+.follow-btn {
+  width: 110px;
+  background-color: #fff;
+  color: #2e8b57;
+  border: 2px solid #3cb371;
+  &:hover {
+    background-color: #f0fff0;
+    color: #2e8b57;
+    border: 2px solid #3cb371;
+  }
+}
+.unfollow-btn {
+  width: 110px;
+  background-color: #3cb371;
+  color: #fff;
+  border: 2px solid #3cb371;
+  &:hover {
+    border-color: #3cb371;
+    color: #fff;
+  }
+}
 
 /* ヘッダー */
 #navbarDropdown {
    img{
     width: 35px;
     height: 35px;
+  }
+}
+
+/* ページネーション */
+.pagination {
+  li {
+    a {
+      color: #2f4f4f;
+      &:hover{
+        background-color:#f0fff0;
+        color: #2f4f4f;
+      }
+    }
   }
 }
 

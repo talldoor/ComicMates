@@ -1,27 +1,27 @@
 main
   = render 'shared/profile_board'
   .container
-    ul.nav.nav-tabs.pt-4
-      li.nab-item
-        = link_to '全ての投稿', '#tab1', data: {toggle: 'tab'} , class: 'nav-link active'
-      li.nab-item
-        = link_to '自分の投稿', '#tab2', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'お気に入り', '#tab3', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'フォロワー', '#tab4', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'フォロー', '#tab5', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'コメント', '#tab6', data: {toggle: 'tab'}, class: 'nav-link'
-    .tab-content.py-3
-      .all-articles#tab1.tab-pane.active
-        = render partial: 'shared/article_cards', locals: { articles: @articles }
-        .row.mt-5
-          .mx-auto
-            = paginate @articles
-      .my-articles#tab2.tab-pane
-        = render partial: 'shared/article_cards', locals: { articles: @my_articles }
-        .row.mt-5
-          .mx-auto
-            = paginate @my_articles
+    = render 'top/home_tab'
+    - case params[:tab]
+    - when 'all_articles' 
+      = render partial: 'shared/article_cards', locals: { articles: @articles }
+      - pages = @articles
+    - when 'my_articles' 
+      = render partial: 'shared/article_cards', locals: { articles: @my_articles }
+      - pages = @my_articles
+    / - when 'favorites'
+    /   / ↑未実装
+    - when 'followers'
+      = render partial: 'shared/users', locals: { users: @followers }
+      - pages = @followers
+    - when 'following'
+      = render partial: 'shared/users', locals: { users: @following }
+      - pages = @following
+    / - when 'comments'
+    /   / ↑未実装
+    - else
+      = render partial: 'shared/article_cards', locals: { articles: @articles }
+      - pages = @articles
+    .row.mt-4
+      .mx-auto
+        = paginate pages

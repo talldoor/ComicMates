@@ -1,24 +1,22 @@
 .container
   = render partial: 'shared/other_profile_board', locals: { user: @user }
-  / ↓テストロジック
-  p フォロー数
-  = @user.following.count
-  p フォロワー数
-  = @user.followers.count
-  / ↑
   .container
-    ul.nav.nav-tabs.pt-4
-      li.nab-item
-        = link_to '投稿記事', '#tab1', data: {toggle: 'tab'} , class: 'nav-link active'
-      li.nab-item
-        = link_to 'お気に入り', '#tab2', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'フォロワー', '#tab3', data: {toggle: 'tab'}, class: 'nav-link'
-      li.nab-item
-        = link_to 'フォロー', '#tab4', data: {toggle: 'tab'}, class: 'nav-link'
-    .tab-content.py-3
-      .my-articles#tab1.tab-pane.active
-        = render partial: 'shared/article_cards', locals: { articles: @user_articles }
-        .row.mt-5
-          .mx-auto
-          = paginate @user_articles
+    = render 'users/other_tab'
+    - case params[:tab]
+    - when 'all_articles' 
+      = render partial: 'shared/article_cards', locals: { articles: @user_articles }
+      - pages = @user_articles
+    / - when 'favorites'
+    /   / ↑未実装
+    - when 'followers'
+      = render partial: 'shared/users', locals: { users: @followers }
+      - pages = @followers
+    - when 'following'
+      = render partial: 'shared/users', locals: { users: @following }
+      - pages = @following
+    - else
+      = render partial: 'shared/article_cards', locals: { articles: @user_articles }
+      - pages = @user_articles
+    .row.mt-4
+      .mx-auto
+        = paginate pages
