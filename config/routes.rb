@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   resources :articles, except: [:index]
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end

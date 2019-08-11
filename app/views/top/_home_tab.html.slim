@@ -12,12 +12,11 @@ ul.nav.nav-tabs
       span.badge
         = @user_articles_count
   li.nab-item
-    = link_to root_path(tab: 'favorites'),
-              class: tab_active?('favorites') do
+    = link_to root_path(tab: 'likes'),
+              class: tab_active?('likes') do
       small お気に入り
-    / ↓未実装
-    / span.badge
-    /   = @my_articles_count
+      span.badge
+        = @liked_articles_count
   li.nab-item
     = link_to root_path(tab: 'followers'),
               class: tab_active?('followers') do
@@ -30,10 +29,3 @@ ul.nav.nav-tabs
       small フォロワー
       span.badge
         = @following_count
-  li.nab-item
-    = link_to root_path(tab: 'comments'),
-              class: tab_active?('comments') do
-      small コメント
-    / ↓未実装
-    / span.badge
-    /   = @following_count

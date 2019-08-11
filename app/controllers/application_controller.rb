@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   def get_tab_count(user)
     @articles_count = Article.count
     @user_articles_count = user.articles.count
+    @liked_articles_count = user.likes.count
     @followers_count = user.followers.count
     @following_count = user.following.count
   end

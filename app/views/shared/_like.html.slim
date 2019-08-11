@@ -1,0 +1,4 @@
+= link_to likes_path(params: { article_id: article.id }), method: :post, remote: true do
+  i.far.fa-heart
+  span.ml-1
+    = article.likes.count

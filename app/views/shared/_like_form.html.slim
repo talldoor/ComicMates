@@ -1,0 +1,5 @@
+div id='like-form-#{article.id}'
+  - if article.like?(current_user)
+    = render partial: 'shared/unlike', locals: { article: article }
+  - else
+    = render partial: 'shared/like', locals: { article: article }
