@@ -6,12 +6,11 @@ ul.nav.nav-tabs
       span.badge
         = @user_articles_count
   li.nab-item
-    = link_to user_path(@user, tab: 'favorites'),
-              class: tab_active?('favorites') do
+    = link_to user_path(@user, tab: 'likes'),
+              class: tab_active?('likes') do
       small お気に入り
-      /↓未実装
-      / span.badge
-      /   = @user_articles_count
+      span.badge
+        = @liked_articles_count
   li.nab-item
     = link_to user_path(@user, tab: 'followers'),
               class: tab_active?('followers') do

@@ -10,9 +10,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @user_articles = @user.articles.recent.page(params[:page])
+    @liked_articles = @user.liked_articles.recent.page(params[:page])
     @followers = @user.followers.recent.page(params[:page])
     @following = @user.following.recent.page(params[:page])
-    get_tab_count(current_user)
+    get_tab_count(@user)
   end
 
   def edit_account

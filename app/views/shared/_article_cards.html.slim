@@ -24,6 +24,10 @@
                 = article.comic_title
             p.card-text
               = article.overview
-          .d-flex.justify-content-end.m-1.pr-1
-            small.text-muted
-              = Date.parse(article.updated_at.to_s).strftime("%Y年%m月%d日")
+          .d-flex.mb-1
+            .ml-3
+            - if user_signed_in?
+              = render partial: 'shared/like_form', locals: { article: article }
+            .ml-auto.pr-2
+              small.text-muted
+                = Date.parse(article.updated_at.to_s).strftime("%Y年%m月%d日")

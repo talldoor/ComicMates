@@ -6,8 +6,9 @@
     - when 'all_articles' 
       = render partial: 'shared/article_cards', locals: { articles: @user_articles }
       - pages = @user_articles
-    / - when 'favorites'
-    /   / ↑未実装
+    - when 'likes'
+      = render partial: 'shared/article_cards', locals: { articles: @liked_articles }
+      - pages = @liked_articles
     - when 'followers'
       = render partial: 'shared/users', locals: { users: @followers }
       - pages = @followers

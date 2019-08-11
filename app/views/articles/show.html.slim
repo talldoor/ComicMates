@@ -25,7 +25,13 @@
         .d-flex.mt-4
           p.text-muted  著者： 
           p = @article.comic_author
-        p.text-muted.mt-4 どんな作品？
+        .d-flex.mt-2
+          - if user_signed_in?
+            p.text-muted お気に入り：　
+            = render partial: 'shared/like_form', locals: { article: @article }
+            p.text-muted.ml-5 コメント：　
+        .mt-2
+        p.text-muted どんな作品？
         p = @article.overview
     .row
       .col-md-1
