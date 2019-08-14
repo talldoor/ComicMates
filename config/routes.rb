@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'top#home'
-
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -15,8 +14,9 @@ Rails.application.routes.draw do
   patch 'setting/password', to: 'users#update_password'
   get 'setting/account', to: 'users#edit_account'
   patch 'setting/account', to: 'users#update_account'
-
-  resources :articles, except: [:index]
+  resources :articles, except: [:index] do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
 end

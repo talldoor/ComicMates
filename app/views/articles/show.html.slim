@@ -1,18 +1,27 @@
-.container.mt-5
-  .border#article-reference-wrapper
-    .d-flex.mx-4.my-3
-      .user-image
-        = link_to user_path(@article.user) do
-          - if @article.user.profile_image.attached?
-            = image_tag @article.user.profile_image, class: 'rounded-circle'
-          - else
-            = image_tag 'user_dummy.png', class: 'rounded-circle'
-      small.mr-auto.text-muted.ml-3.pt-1
-        = @article.user.name + ' さんが投稿しました'
-      - if current_user ==  @article.user
-        = link_to '編集', edit_article_path(@article), class: 'text-primary mr-3'
-        = link_to '削除', article_path(@article), method: :delete, data: { confirm: "「#{@article.comic_title}」の記事を削除します。よろしいですか？" }, class: 'text-danger'
+.container
+  .border.mt-5#article-reference-wrapper
     .row
+      .col-md-1
+      .col-md-10
+        .d-flex.mx-2.mt-4.mb-3
+          .user-image
+            = link_to user_path(@article.user) do
+              - if @article.user.profile_image.attached?
+                = image_tag @article.user.profile_image, class: 'rounded-circle'
+              - else
+                = image_tag 'user_dummy.png', class: 'rounded-circle'
+          small.text-muted.ml-3.pt-1
+            = @article.user.name + ' さんが投稿しました'
+          .ml-auto
+            - if current_user ==  @article.user
+              = link_to '編集', edit_article_path(@article), class: 'text-primary mr-3'
+              = link_to '削除', article_path(@article),
+                        method: :delete,
+                        data: { confirm: "「#{@article.comic_title}」の記事を削除します。よろしいですか？" },
+                        class: 'text-danger'
+      .col-md-1
+    .row
+      .col-md-1
       .col-md-4.text-center
         .comic-image
           - if @article.comic_image.attached?
@@ -20,25 +29,30 @@
           - else
             = image_tag  'comic_dummy.png', class: 'rounded'
         button.btn.btn-info.my-3 amazon詳細ページ
-      .col-md-8.pl-5
+      .col-md-6.pl-5
         h3 = @article.comic_title
         .d-flex.mt-4
-          p.text-muted  著者： 
+          p.text-muted  著者：　
           p = @article.comic_author
         .d-flex.mt-2
           - if user_signed_in?
             p.text-muted お気に入り：　
             = render partial: 'shared/like_form', locals: { article: @article }
             p.text-muted.ml-5 コメント：　
+            = render partial: 'shared/comment_icon', locals: { article: @article }
         .mt-2
-        p.text-muted どんな作品？
-        p = @article.overview
+          p.text-muted どんな作品？
+          p = @article.overview
+      .col-md-1
     .row
       .col-md-1
-      .col-md-10.pl-5
+      .col-md-10.pl-5.ml-md-4
         h5.text-muted 感想
         p = @article.detail
-        .d-flex.justify-content-end.m-1.pr-1
+        .d-flex.justify-content-end.m-1
           small.text-muted
             = Date.parse(@article.updated_at.to_s).strftime("%Y年%m月%d日")
       .col-md-1
+  .border.mt-3
+    = render partial: 'shared/comments', locals: { article: @article }
+    = render partial: 'shared/comment_form', locals: { article: @article }

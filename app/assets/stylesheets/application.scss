@@ -123,3 +123,27 @@ a {
     object-fit: cover;
   }
 }
+
+/* コメント参照・投稿 */
+#comment-wrapper {
+  .user-image img {
+    width: 40px;
+    height: 40px;  
+  }
+  .comment-content {
+    position: relative;
+    background-color: #fbfbfb;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 6px 18px;
+    margin-top: 3px;
+    max-width: 500px;
+  }
+}
+#form-comment-wrapper {
+  .btn-comment {
+    background-color:  #3cb371;
+    color: #fff;
+    font-size: 14px;
+  }
+}
