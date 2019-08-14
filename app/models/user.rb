@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes, dependent: :destroy
   has_many :liked_articles, through: :likes, source: :article
+  has_many :comments, dependent: :destroy
   validates :name, presence: true, length: { maximum: 20 }
 
   devise :database_authenticatable, :registerable,

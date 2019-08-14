@@ -1,0 +1,26 @@
+.row
+  .col-md-2
+  .col-md-8#comment-wrapper
+    p.m-4 この記事へのコメント
+    - article.comments.each do |comment|
+      .d-flex.flex-wrap.my-3.ml-1
+        .user-image
+          = link_to user_path(comment.user) do
+            - if comment.user.profile_image.attached?
+              = image_tag comment.user.profile_image, class: 'rounded-circle'
+            - else
+              = image_tag 'user_dummy.png', class: 'rounded-circle'
+        .d-flex.flex-column.ml-2
+          small.text-muted
+            = comment.user.name
+          .comment-content
+            small
+              = comment.content
+        .d-flex.flex-column.align-self-end.ml-1
+          small.text-muted
+            = Date.parse(comment.created_at.to_s).strftime("%m月%d日")
+          - if current_user == comment.user
+            = link_to '削除', article_comment_path(article, comment),
+                      data: { confirm: 'コメントを削除します。よろしいですか？' },
+                      method: :delete, class: 'small text-muted text-right'
+  .col-md-2
