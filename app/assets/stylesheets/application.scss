@@ -147,3 +147,20 @@ a {
     font-size: 14px;
   }
 }
+
+/* 記事・ユーザー検索 */
+.btn-search {
+  background-color:  #3cb371;
+  color: #fff;
+  &:hover {
+    border-color: #3cb371;
+    color: #fff;
+  }
+}
+.btn-all {
+  background-color:  #fff;
+  color: #3cb371;
+  &:hover {
+    color: #006400;
+  }
+}

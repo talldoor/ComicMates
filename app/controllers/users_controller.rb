@@ -4,7 +4,15 @@ class UsersController < ApplicationController
                 only: [:edit_account, :update_account, :edit_password, :update_password]
 
   def index
-    @users = User.recent.page(params[:page])
+    @q = User.ransack(params[:q])
+    if params[:all_user].present?
+      @users = User.recent.page(params[:page])
+    else
+      @users = @q.result(distinct: true).recent.page(params[:page])
+      if @users.empty?
+        flash[:notice] = '該当するユーザーが見つかりませんでした。'
+      end
+    end
   end
 
   def show

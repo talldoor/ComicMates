@@ -1,0 +1,16 @@
+.container.mt-5
+  .row.text-center
+    .col-md-2
+    .col-md-8
+      h3 記事を探す
+      = search_form_for @q do |f|
+        .d-flex.my-5
+          = f.search_field :comic_title_or_comic_author_cont, class: 'form-control',
+                          placeholder: "タイトル、または著者名を入力"
+          = f.submit class: 'btn btn-search ml-2', name: 'search_btn'
+    .col-md-2
+  = render partial: 'shared/article_cards', locals: { articles: @articles }
+  .row.mt-5
+    .mx-auto
+      - if @articles.present?
+        = paginate @articles

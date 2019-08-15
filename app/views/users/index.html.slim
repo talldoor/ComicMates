@@ -1,5 +1,15 @@
 .container.mt-5
-  h3.text-center ユーザ一覧
+  .row.text-center
+    .col-md-2
+    .col-md-8
+      h3.text-center ユーザ一覧
+      = search_form_for @q do |f|
+        .d-flex.mt-5
+          = f.search_field :name_cont, class: 'form-control',
+                          placeholder: "ユーザー名を入力"
+          = f.submit class: 'btn btn-search ml-2'
+          = f.submit '全てのユーザー', class: 'btn btn-all ml-1', name: 'all_user'
+    .col-md-2
   = render partial: 'shared/users', locals: { users: @users }
   .row.mt-5
     .mx-auto
