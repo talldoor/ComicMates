@@ -3,10 +3,10 @@ main
   .container
     = render 'top/home_tab'
     - case params[:tab]
-    - when 'all_articles' 
+    - when 'all_articles'
       = render partial: 'shared/article_cards', locals: { articles: @articles }
       - pages = @articles
-    - when 'my_articles' 
+    - when 'my_articles'
       = render partial: 'shared/article_cards', locals: { articles: @my_articles }
       - pages = @my_articles
     - when 'likes'

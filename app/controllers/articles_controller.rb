@@ -1,6 +1,18 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :find_article, only: [:edit, :update, :destroy]
+
+  def index
+    @q = Article.ransack(params[:q])
+    if params[:search_btn].blank?
+      @articles = Article.none
+    else
+      @articles = @q.result(distinct: true).recent.page(params[:page])
+      if @articles.empty?
+        flash[:notice] = '該当する記事が見つかりませんでした。'
+      end
+    end
+  end
 
   def show
     @article = Article.find_by(id: params[:id])

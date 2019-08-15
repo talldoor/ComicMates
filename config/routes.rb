@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   patch 'setting/password', to: 'users#update_password'
   get 'setting/account', to: 'users#edit_account'
   patch 'setting/account', to: 'users#update_account'
-  resources :articles, except: [:index] do
+  resources :articles do
     resources :comments, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
