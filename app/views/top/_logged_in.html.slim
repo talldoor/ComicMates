@@ -1,26 +1,25 @@
-main
-  = render 'shared/profile_board'
-  .container
-    = render 'top/home_tab'
-    - case params[:tab]
-    - when 'all_articles'
-      = render partial: 'shared/article_cards', locals: { articles: @articles }
-      - pages = @articles
-    - when 'my_articles'
-      = render partial: 'shared/article_cards', locals: { articles: @my_articles }
-      - pages = @my_articles
-    - when 'likes'
-      = render partial: 'shared/article_cards', locals: { articles: @liked_articles }
-      - pages = @liked_articles
-    - when 'followers'
-      = render partial: 'shared/users', locals: { users: @followers }
-      - pages = @followers
-    - when 'following'
-      = render partial: 'shared/users', locals: { users: @following }
-      - pages = @following
-    - else
-      = render partial: 'shared/article_cards', locals: { articles: @articles }
-      - pages = @articles
-    .row.mt-4
-      .mx-auto
-        = paginate pages
+= render 'shared/profile_board'
+.container
+  = render 'top/home_tab'
+  - case params[:tab]
+  - when 'all_articles'
+    = render partial: 'shared/article_cards', locals: { articles: @articles }
+    - pages = @articles
+  - when 'my_articles'
+    = render partial: 'shared/article_cards', locals: { articles: @my_articles }
+    - pages = @my_articles
+  - when 'likes'
+    = render partial: 'shared/article_cards', locals: { articles: @liked_articles }
+    - pages = @liked_articles
+  - when 'followers'
+    = render partial: 'shared/users', locals: { users: @followers }
+    - pages = @followers
+  - when 'following'
+    = render partial: 'shared/users', locals: { users: @following }
+    - pages = @following
+  - else
+    = render partial: 'shared/article_cards', locals: { articles: @articles }
+    - pages = @articles
+  .row.mt-4
+    .mx-auto
+      = paginate pages

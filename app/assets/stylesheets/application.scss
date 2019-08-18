@@ -2,9 +2,41 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-/* 共通 */
+/* 全体のレイアウト */
+html, body {
+  height: 100%;
+}
+#body-wrapper {
+  position:relative;
+  min-height: 100%;
+}
+#navbarDropdown {
+   img{
+    width: 35px;
+    height: 35px;
+  }
+}
+main {
+  padding-bottom: 70px;
+}
+footer {
+  width:100%;
+  height: 70px;
+  position: absolute;
+  bottom: 0;
+}
+
+/* 共通部品 */
 a {
   color: black;
+}
+.default-btn {
+  background-color:  #3cb371;
+  color: #fff;
+  &:hover {
+    background-color: #34a165;
+    color: #fff;
+  }
 }
 .follow-btn {
   width: 110px;
@@ -27,16 +59,8 @@ a {
     color: #fff;
   }
 }
-#like-buttom{
+#like-btn{
   color: #32cd32;
-}
-
-/* ヘッダー */
-#navbarDropdown {
-   img{
-    width: 35px;
-    height: 35px;
-  }
 }
 
 /* ページネーション */
@@ -52,9 +76,33 @@ a {
   }
 }
 
+/* ホーム */
+.jumbotron {
+  background-image: url('top_page.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  margin: 0px;
+  .container {
+    h1 {
+      color: white;
+    }
+    p {
+      color: white;
+    }
+  }
+}
+
 /* ユーザー設定(サイドバー) */
 #sidebar-wrapper {
   height: 100%;
+  background-color: #d5facf;
+  .sidebar-item {
+    background-color: #d5facf;
+    color: #3e6b38;
+    &:hover {
+      background-color: #bff5b5;
+    }
+  }
 }
 
 /* ユーザー設定(フォーム) */
@@ -85,7 +133,6 @@ a {
     height: 150px;  
   }
 }
-
 
 /* 記事一覧（カード） */
 #article-card-image {
@@ -141,7 +188,7 @@ a {
   }
 }
 #form-comment-wrapper {
-  .btn-comment {
+  .comment-btn {
     background-color:  #3cb371;
     color: #fff;
     font-size: 14px;
@@ -149,7 +196,7 @@ a {
 }
 
 /* 記事・ユーザー検索 */
-.btn-search {
+.search-btn {
   background-color:  #3cb371;
   color: #fff;
   &:hover {
@@ -157,8 +204,8 @@ a {
     color: #fff;
   }
 }
-.btn-all {
-  background-color:  #fff;
+.all-btn {
+  background-color:  #f9f9f9;
   color: #3cb371;
   &:hover {
     color: #006400;

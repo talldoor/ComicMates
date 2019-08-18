@@ -1,5 +1,5 @@
 = bootstrap_devise_error_messages!
-.container.mt-4
+.container.py-4
   .row
     .col-md-3
     .col-md-6
@@ -18,7 +18,7 @@
             .form-group
               = f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード（確認用）'
             .form-group
-              = f.submit t('.sign_up'), class: 'btn btn-primary btn-block'
+              = f.submit t('.sign_up'), class: 'btn default-btn btn-block'
           = render 'devise/shared/links'
           = render 'devise/shared/test_login'
     .col-md-3

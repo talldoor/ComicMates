@@ -1,8 +1,9 @@
-.container.mt-5
+.container.pt-5
   .row.no-gutters
-    .col-md-3
+    .col-md-1
+    .col-md-2
       = render 'shared/profile_sidebar'
-    .col-md-9
+    .col-md-8.bg-white
       .border#page-content-wrapper
         h4.text-center.mt-4 アカウント情報
         .mx-md-5
@@ -18,4 +19,5 @@
                 = f.label :email
                 = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
               .form-group.text-center.my-5
-                = f.submit '更新する', class: 'btn btn-primary'
+                = f.submit '更新する', class: 'btn default-btn'
+    .col-md-1

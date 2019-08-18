@@ -1,5 +1,5 @@
-.container
-  .border.mt-5#article-reference-wrapper
+.container.pt-5
+  .border.bg-white#article-reference-wrapper
     .row
       .col-md-1
       .col-md-10
@@ -28,7 +28,6 @@
             = image_tag @article.comic_image, class: 'rounded'
           - else
             = image_tag  'comic_dummy.png', class: 'rounded'
-        button.btn.btn-info.my-3 amazon詳細ページ
       .col-md-6.pl-5
         h3 = @article.comic_title
         .d-flex.mt-4
@@ -46,7 +45,7 @@
       .col-md-1
     .row
       .col-md-1
-      .col-md-10.pl-5.ml-md-4
+      .col-md-10.pl-5.mt-3.ml-md-4
         h5.text-muted 感想
         p = @article.detail
         .d-flex.justify-content-end.m-1

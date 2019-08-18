@@ -1,4 +1,4 @@
-.container.mt-4
+.container.py-4
   .row
     .col-md-3
     .col-md-6
@@ -13,7 +13,8 @@
             .form-group
               = f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: 'パスワード'
             .form-group
-              = f.submit  t('.sign_in'), class: 'btn btn-primary btn-block'
+              = f.submit  t('.sign_in'), class: 'btn default-btn btn-block'
           = render 'devise/shared/links'
           = render 'devise/shared/test_login'
+          br
     .col-md-3

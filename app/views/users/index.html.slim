@@ -1,4 +1,4 @@
-.container.mt-5
+.container.pt-5
   .row.text-center
     .col-md-2
     .col-md-8
@@ -7,8 +7,8 @@
         .d-flex.mt-5
           = f.search_field :name_cont, class: 'form-control',
                           placeholder: "ユーザー名を入力"
-          = f.submit class: 'btn btn-search ml-2'
-          = f.submit '全てのユーザー', class: 'btn btn-all ml-1', name: 'all_user'
+          = f.submit class: 'btn search-btn ml-2'
+          = f.submit '全てのユーザー', class: 'btn all-btn ml-1', name: 'all_user'
     .col-md-2
   = render partial: 'shared/users', locals: { users: @users }
   .row.mt-5
