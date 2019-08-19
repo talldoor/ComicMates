@@ -4,7 +4,8 @@
     .col.md-7#form-comment-wrapper
       = form_with url: article_comments_path(article), local: true do |f|
         .form-group.my-3
-          = f.text_area :content, class: 'form-control', id: 'comment', placeholder: 'コメントを書く'
+          = f.text_area :content, class: 'form-control',
+                        id: 'comment', placeholder: 'コメントを書く（50文字以内）'
           .d-flex.justify-content-end
             = f.submit '送信', class:'btn comment-btn mt-1'
     .col-md-3

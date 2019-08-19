@@ -63,6 +63,18 @@ a {
   color: #32cd32;
 }
 
+/* フラッシュ */
+.flash_notice {
+  text-align: center;
+  color: #006400;
+  background-color: #c4f5c4;
+}
+.flash_alert{
+  text-align: center;
+  color: #800000;
+  background-color: #f9cacc;
+}
+
 /* ページネーション */
 .pagination {
   li {
@@ -80,14 +92,14 @@ a {
 .jumbotron {
   background-image: url('top_page.jpg');
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 47%;
   margin: 0px;
   .container {
     h1 {
-      color: white;
+      color: #7fffd4;
     }
     p {
-      color: white;
+      color: #7fffd4;
     }
   }
 }

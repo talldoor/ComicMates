@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
       flash[:notice] = 'コメントしました。'
       redirect_back(fallback_location: article_path(@article))
     else
-      render 'articles/show'
+      flash[:alert] = 'コメント入力に誤りがあります。'
+      redirect_back(fallback_location: article_path(@article))
     end
   end
 
@@ -17,6 +18,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     @article = Article.find(comment.article_id)
     comment.destroy
+    flash[:notice] = 'コメントを削除しました。'
     redirect_back(fallback_location: article_path(@article))
   end
 

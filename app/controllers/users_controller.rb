@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     else
       @users = @q.result(distinct: true).recent.page(params[:page])
       if @users.empty?
-        flash[:notice] = '該当するユーザーが見つかりませんでした。'
+        flash.now[:notice] = '該当するユーザーが見つかりませんでした。'
       end
     end
   end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update_without_password(user_account_params)
       redirect_to edit_user_registration_path, notice: 'アカウント情報を変更しました。'
     else
-      flash.now.alert = '入力に誤りがあります。'
+      flash.now[:alert] = '入力に誤りがあります。'
       render :edit_account
     end
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       bypass_sign_in(@user)
       redirect_to edit_user_registration_path, notice: 'パスワードを変更しました。'
     else
-      flash.now.alert = '入力に誤りがあります。'
+      flash.now[:alert] = '入力に誤りがあります。'
       render :edit_password
     end
   end
