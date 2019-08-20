@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :article do
-    comic_title { 'MyString' }
-    comic_author { 'MyString' }
-    overview { 'MyText' }
-    detail { 'MyText' }
+    comic_title { 'C_title' }
+    comic_author { 'C_Author' }
+    overview { 'C_Overview' }
+    detail { 'C_Detail' }
     association :user
   end
 end

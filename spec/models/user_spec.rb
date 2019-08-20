@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.create(:user)
     end
 
-    context 'ユーザーが有効であるとき' do
-      it 'ユーザ名が存在する' do
+    context 'ユーザーが有効' do
+      it '必須項目が全て存在する' do
         expect(@user).to be_valid
       end
 
-      it 'ユーザ名の長さが範囲内' do
-        @user.name = '12345678901234567890'
+      it 'ユーザ名の文字数が範囲内' do
+        @user.name = 'a' * 20
         expect(@user).to be_valid
       end
 
@@ -22,20 +22,41 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'ユーザーが無効であるとき' do
+    context 'ユーザーが無効' do
       it 'ユーザ名が存在しない' do
         @user.name = nil
         expect(@user).not_to be_valid
       end
 
-      it 'ユーザ名の長さが範囲外' do
-        @user.name = '123456789012345678901'
+      it 'ユーザ名の文字数オーバー' do
+        @user.name = 'a' * 21
         expect(@user).not_to be_valid
       end
 
       it 'メールアドレスが重複している' do
         @user2 = FactoryBot.create(:user, email: 'test111@example.com')
         @user.email = 'test111@example.com'
+        expect(@user).not_to be_valid
+      end
+
+      it 'パスワードが存在しない' do
+        @user.password = ''
+        expect(@user).not_to be_valid
+      end
+
+      it 'パスワードが最低文字数を未満' do
+        @user.password = 'ppppp'
+        @user.password_confirmation = 'ppppp'
+        expect(@user).not_to be_valid
+      end
+
+      it 'お気に入り作品の文字数オーバー' do
+        @user.my_book1 = 'a' * 21
+        expect(@user).not_to be_valid
+      end
+
+      it '自己紹介の文字数オーバー' do
+        @user.name = 'a' * 151
         expect(@user).not_to be_valid
       end
     end
