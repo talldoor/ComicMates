@@ -26,4 +26,12 @@ describe '新規登録機能', type: :system do
       expect(page).to have_content '保存されませんでした'
     end
   end
+
+  context '簡易ログイン機能を使用した場合' do
+    it '「テストユーザーでログイン」ボタン押下' do
+      FactoryBot.create(:test_user)
+      click_button 'テストユーザーでログイン'
+      expect(page).to have_content 'ログインしました'
+    end
+  end
 end

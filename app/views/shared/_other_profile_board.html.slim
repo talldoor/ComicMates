@@ -9,7 +9,7 @@
       - unless current_user == user
         = render partial: 'shared/follow_form', locals: { user: user }
     .col-md-8.pl-5
-      h3 = user.name + ' さん'
+      h3 = user.name + 'さん'
       p.mt-4 = user.self_introduction
       p.mt-4
         small マイベストコミックス

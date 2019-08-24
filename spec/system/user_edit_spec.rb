@@ -2,12 +2,8 @@ require 'rails_helper'
 
 describe 'ユーザ情報変更機能', type: :system do
   before do
-    # テストユーザをログインさせる
     @user = FactoryBot.create(:user)
-    visit new_user_session_path
-    fill_in 'メールアドレス', with: @user.email
-    fill_in 'パスワード', with: @user.password
-    click_button 'ログイン'
+    sign_in_as @user
     visit edit_user_registration_path
   end
 
@@ -43,7 +39,7 @@ describe 'ユーザ情報変更機能', type: :system do
 
     context '正しい情報を入力した場合' do
       it 'ユーザーネームとメールアドレスを登録' do
-        fill_in 'ユーザーネーム', with: 'テストユーザー変更後'
+        fill_in 'ユーザーネーム', with: 'ユーザー変更後'
         fill_in 'メールアドレス', with: 'test111@example.com'
         click_button '更新する'
         expect(page).to have_content 'アカウント情報を変更しました'
@@ -66,7 +62,7 @@ describe 'ユーザ情報変更機能', type: :system do
       end
 
       it 'メールアドレスが空で登録できない' do
-        fill_in 'ユーザーネーム', with: 'テストユーザー変更後'
+        fill_in 'ユーザーネーム', with: 'ユーザー変更後'
         fill_in 'メールアドレス', with: ''
         click_button '更新する'
         expect(page).to have_content '入力に誤りがあります'

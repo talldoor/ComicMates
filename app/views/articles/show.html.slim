@@ -25,9 +25,9 @@
       .col-md-4.text-center
         .comic-image
           - if @article.comic_image.attached?
-            = image_tag @article.comic_image, class: 'rounded'
+            = image_tag @article.comic_image, class: 'rounded image-specific'
           - else
-            = image_tag  'comic_dummy.png', class: 'rounded'
+            = image_tag  'comic_dummy.png', class: 'rounded image-default'
       .col-md-6.pl-5
         h3 = @article.comic_title
         .d-flex.mt-4
