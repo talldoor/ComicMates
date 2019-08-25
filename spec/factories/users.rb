@@ -1,22 +1,26 @@
 FactoryBot.define do
   factory :user do
+    name { 'ユーザーA' }
     email { 'test000@example.com' }
     password { 'password' }
     password_confirmation { 'password' }
-    name { 'ユーザーA' }
   end
 
   factory :other_user, class: 'User' do
-    email { 'test111@example.com' }
+    sequence(:name) { |n| "アザーユーザー_#{n}" }
+    sequence(:email) { |n| "other_#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
-    name { 'アザーユーザー' }
+    my_book1 { 'マイベスト１' }
+    my_book2 { 'マイベスト２' }
+    my_book3 { 'マイベスト３' }
+    self_introduction { '自己紹介文' }
   end
 
   factory :test_user, class: 'User' do
+    name { '簡易ログイン用' }
     email { 'testuser@vwxyz.com' }
     password { 'test39pass' }
     password_confirmation { 'test39pass' }
-    name { '簡易ログイン用' }
   end
 end

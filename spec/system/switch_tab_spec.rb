@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'タブ切り替え', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
-  # 3つの記事を予め作成
   let!(:article) { FactoryBot.create(:article, user: user) }
   let!(:other_article1) { FactoryBot.create(:other_article, user: other_user) }
   let!(:other_article2) { FactoryBot.create(:other_article, user: other_user) }
@@ -30,6 +29,21 @@ describe 'タブ切り替え', type: :system do
         expect(page).to have_content article.comic_title
         expect(page).not_to have_content other_article1.comic_title
         expect(page).not_to have_content other_article2.comic_title
+      end
+    end
+  end
+
+  describe 'ユーザー参照画面' do
+    before do
+      visit user_path(other_user)
+    end
+
+    context '「投稿記事」タブをクリックしたとき' do
+      it 'ユーザーの投稿記事が正しく表示されること' do
+        click_link '投稿記事'
+        expect(page).to have_css('span#mine-count', text: '2')
+        expect(page).to have_content other_article1.comic_title
+        expect(page).to have_content other_article2.comic_title
       end
     end
   end

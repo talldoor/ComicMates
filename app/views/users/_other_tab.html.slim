@@ -3,23 +3,23 @@ ul.nav.nav-tabs
     = link_to user_path(@user, tab: 'user_articles'),
               class: tab_active?('user_articles', initial_tab: true) do
       small 投稿記事
-      span.badge
+      span.badge#mine-count
         = @user_articles_count
   li.nab-item
     = link_to user_path(@user, tab: 'likes'),
               class: tab_active?('likes') do
       small お気に入り
-      span.badge
+      span.badge#like-count
         = @liked_articles_count
   li.nab-item
     = link_to user_path(@user, tab: 'followers'),
               class: tab_active?('followers') do
       small フォロワー
-      span.badge
+      span.badge#followers-count
         = @followers_count
   li.nab-item
     = link_to user_path(@user, tab: 'following'),
               class: tab_active?('following') do
       small フォロー
-      span.badge
+      span.badge#following-count
         = @following_count
