@@ -7,13 +7,20 @@ describe 'タブ切り替え', type: :system do
   let!(:article) { FactoryBot.create(:article, user: user) }
   let!(:other_article1) { FactoryBot.create(:other_article, user: other_user1) }
   let!(:other_article2) { FactoryBot.create(:other_article, user: other_user1) }
-
-  before do
-    # フォロー関係を作成（userはフォロワーが1、フォローが2。other_user1はフォロワーが2、フォローが1）
+  # フォロー関係を作成（userはフォロワーが1、フォローが2。other_user1はフォロワーが2、フォローが1）
+  let!(:relationships) do
     FactoryBot.create(:relationship, follower: user, followed: other_user1)
     FactoryBot.create(:relationship, follower: user, followed: other_user2)
     FactoryBot.create(:relationship, follower: other_user1, followed: user)
     FactoryBot.create(:relationship, follower: other_user2, followed: other_user1)
+  end
+  # お気入り関係を作成
+  let!(:likes) do
+    FactoryBot.create(:like, user: user, article: other_article1)
+    FactoryBot.create(:like, user: other_user1, article: other_article2)
+  end
+
+  before do
     sign_in_as user
   end
 
@@ -34,6 +41,15 @@ describe 'タブ切り替え', type: :system do
         expect(page).to have_css('span#mine-count', text: '1')
         expect(page).to have_content article.comic_title
         expect(page).not_to have_content other_article1.comic_title
+        expect(page).not_to have_content other_article2.comic_title
+      end
+    end
+
+    context '「お気に入り」タブをクリックしたとき' do
+      it 'お気に入りの記事が正しく表示されること' do
+        click_link 'お気に入り'
+        expect(page).to have_css('span#like-count', text: '1')
+        expect(page).to have_content other_article1.comic_title
         expect(page).not_to have_content other_article2.comic_title
       end
     end
@@ -68,6 +84,15 @@ describe 'タブ切り替え', type: :system do
         expect(page).to have_css('span#mine-count', text: '2')
         expect(page).to have_content other_article1.comic_title
         expect(page).to have_content other_article2.comic_title
+      end
+    end
+
+    context '「お気に入り」タブをクリックしたとき' do
+      it 'お気に入りの記事が正しく表示されること' do
+        click_link 'お気に入り'
+        expect(page).to have_css('span#like-count', text: '1')
+        expect(page).to have_content other_article2.comic_title
+        expect(page).not_to have_content article.comic_title
       end
     end
 

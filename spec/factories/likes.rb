@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :like do
-    user_id { 1 }
-    article_id { 1 }
+    trait :with_dependents do
+      user
+      article
+    end
   end
 end
