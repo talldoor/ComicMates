@@ -1,5 +1,5 @@
 div
   = link_to article_path(article, anchor: :comment) do
     i.far.fa-comment
-    span.ml-1
+    span.ml-1#article-comment-count
       = article.comments.count

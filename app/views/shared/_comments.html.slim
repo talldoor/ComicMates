@@ -12,7 +12,7 @@
               - else
                 = image_tag 'user_dummy.png', class: 'rounded-circle'
           .d-flex.flex-column.ml-2
-            small.text-muted
+            small.text-muted id='comment-user-#{comment.user.id}'
               = comment.user.name
             .comment-content
               small
@@ -23,5 +23,7 @@
             - if current_user == comment.user
               = link_to '削除', article_comment_path(article, comment),
                         data: { confirm: 'コメントを削除します。よろしいですか？' },
-                        method: :delete, class: 'small text-muted text-right'
+                        method: :delete,
+                        class: 'small text-muted text-right',
+                        id: 'comment-delete'
     .col-md-2
