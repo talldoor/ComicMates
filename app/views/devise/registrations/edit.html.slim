@@ -1,9 +1,10 @@
 = bootstrap_devise_error_messages!
-.container.mt-5
+.container.pt-5
   .row.no-gutters
-    .col-md-3
+    .col-md-1
+    .col-md-2
       = render 'shared/profile_sidebar'
-    .col-md-9
+    .col-md-8.bg-white
       .border#page-content-wrapper
         h4.text-center.mt-4 プロフィール情報
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
@@ -39,4 +40,5 @@
               = f.label :self_introduction
               = f.text_area :self_introduction, rows: 4, class: 'form-control'
             .form-group.text-center.my-5
-              = f.submit '更新する', class: 'btn btn-primary'
+              = f.submit '更新する', class: 'btn default-btn'
+    .col-md-1

@@ -6,8 +6,8 @@ class Article < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
-  validates :comic_title, presence: true, length: { maximum: 30 }
-  validates :comic_author, length: { maximum: 30 }
+  validates :comic_title, presence: true, length: { maximum: 20 }
+  validates :comic_author, length: { maximum: 20 }
   validates :overview, presence: true, length: { maximum: 100 }
   validates :detail, length: { maximum: 400 }
 

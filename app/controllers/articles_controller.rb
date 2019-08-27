@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     else
       @articles = @q.result(distinct: true).recent.page(params[:page])
       if @articles.empty?
-        flash[:notice] = '該当する記事が見つかりませんでした。'
+        flash.now[:notice] = '該当する記事が見つかりませんでした。'
       end
     end
   end
@@ -28,29 +28,25 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
     if @article.save
-      flash[:notice] = '記事を投稿しました。'
-      redirect_to article_path(@article)
+      redirect_to article_path(@article), notice: '記事を投稿しました。'
     else
-      # ↓テストロジック
-      flash.now.alert = '入力に誤りがあります。'
-      # ↑
+      flash.now[:alert] = '入力に誤りがあります。'
       render :new
     end
   end
 
   def update
     if @article.update(article_params)
-      flash[:notice] = '記事を更新しました。'
-      redirect_to article_path(@article)
+      redirect_to article_path(@article), notice: '記事を更新しました。'
     else
+      flash.now[:alert] = '入力に誤りがあります。'
       render :edit
     end
   end
 
   def destroy
     @article.destroy
-    flash[:notice] = "記事を削除しました。"
-    redirect_to root_path
+    redirect_to root_path, notice: '記事を削除しました。'
   end
 
   private

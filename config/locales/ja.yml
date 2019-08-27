@@ -21,9 +21,9 @@ ja:
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
         name: ユーザーネーム
-        my_book1: マイベストコミック１
-        my_book2: マイベストコミック２
-        my_book3: マイベストコミック３
+        my_book1: お気に入り作品１
+        my_book2: お気に入り作品２
+        my_book3: お気に入り作品３
         self_introduction: 自己紹介
       article:
         comic_image: 作品画像

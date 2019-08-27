@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :liked_articles, through: :likes, source: :article
   has_many :comments, dependent: :destroy
   validates :name, presence: true, length: { maximum: 20 }
+  validates :my_book1, length: { maximum: 20 }
+  validates :my_book2, length: { maximum: 20 }
+  validates :my_book3, length: { maximum: 20 }
+  validates :self_introduction, length: { maximum: 150 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

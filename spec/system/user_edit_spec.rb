@@ -1,19 +1,16 @@
 require 'rails_helper'
 
 describe 'ユーザ情報変更機能', type: :system do
+  let(:user) { FactoryBot.create(:user) }
+
   before do
-    # テストユーザをログインさせる
-    @user = FactoryBot.create(:user)
-    visit new_user_session_path
-    fill_in 'メールアドレス', with: @user.email
-    fill_in 'パスワード', with: @user.password
-    click_button 'ログイン'
+    sign_in_as user
     visit edit_user_registration_path
   end
 
   describe 'プロフィール情報変更' do
-    context '正しい情報を入力した場合' do
-      it '画像とマイベストと自己紹介を登録' do
+    context '正しい情報を入力したとき' do
+      it '画像とマイベストと自己紹介が登録できること' do
         file_path = Rails.root.join('spec', 'images', 'test_sample.png')
         attach_file 'profile_image', file_path
         fill_in 'my_best1', with: 'データ１'
@@ -23,8 +20,10 @@ describe 'ユーザ情報変更機能', type: :system do
         click_button '更新する'
         expect(page).to have_content 'アカウント情報を変更しました'
       end
+    end
 
-      it '「画像を削除」にチェックを入れて画像を削除' do
+    context '「画像を削除」にチェックを入れて更新したとき' do
+      it '画像を削除できること' do
         file_path = Rails.root.join('spec', 'images', 'test_sample.png')
         attach_file 'profile_image', file_path
         click_button '更新する'
@@ -41,35 +40,32 @@ describe 'ユーザ情報変更機能', type: :system do
       visit setting_account_path
     end
 
-    context '正しい情報を入力した場合' do
-      it 'ユーザーネームとメールアドレスを登録' do
-        fill_in 'ユーザーネーム', with: 'テストユーザー変更後'
+    context '正しい情報を入力したとき' do
+      it 'ユーザーネームとメールアドレスが登録できること' do
+        fill_in 'ユーザーネーム', with: 'ユーザー変更後'
         fill_in 'メールアドレス', with: 'test111@example.com'
         click_button '更新する'
         expect(page).to have_content 'アカウント情報を変更しました'
       end
     end
 
-    context '不正な情報を入力した場合' do
-      it 'ユーザーネームとメールアドレスが空で登録できない' do
-        fill_in 'ユーザーネーム', with: ''
-        fill_in 'メールアドレス', with: ''
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
+    describe '不正な情報' do
+      context 'ユーザーネームがないとき' do
+        it '更新できないこと' do
+          fill_in 'ユーザーネーム', with: ''
+          fill_in 'メールアドレス', with: 'test111@example.com'
+          click_button '更新する'
+          expect(page).to have_content '入力に誤りがあります'
+        end
       end
 
-      it 'ユーザーネームが空で登録できない' do
-        fill_in 'ユーザーネーム', with: ''
-        fill_in 'メールアドレス', with: 'test111@example.com'
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
-      end
-
-      it 'メールアドレスが空で登録できない' do
-        fill_in 'ユーザーネーム', with: 'テストユーザー変更後'
-        fill_in 'メールアドレス', with: ''
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
+      context 'メールアドレスがないとき' do
+        it '更新できないこと' do
+          fill_in 'ユーザーネーム', with: 'ユーザー変更後'
+          fill_in 'メールアドレス', with: ''
+          click_button '更新する'
+          expect(page).to have_content '入力に誤りがあります'
+        end
       end
     end
   end
@@ -79,9 +75,9 @@ describe 'ユーザ情報変更機能', type: :system do
       visit setting_password_path
     end
 
-    context '正しい情報を入力した場合' do
-      it 'パスワードを登録' do
-        fill_in '現在のパスワード', with: @user.password
+    context '正しい情報を入力したとき' do
+      it 'パスワードを更新できること' do
+        fill_in '現在のパスワード', with: user.password
         fill_in 'パスワード', with: 'newpassword'
         fill_in '確認用パスワード', with: 'newpassword'
         click_button '更新する'
@@ -89,29 +85,35 @@ describe 'ユーザ情報変更機能', type: :system do
       end
     end
 
-    context '不正な情報を入力した場合' do
-      it '現在のパスワードが異なり登録できない' do
-        fill_in '現在のパスワード', with: 'wrongpass'
-        fill_in 'パスワード', with: 'newpassword'
-        fill_in '確認用パスワード', with: 'newpassword'
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
+    describe '不正な情報' do
+      context '現在のパスワードが異なるとき' do
+        it 'パスワードが更新できないこと' do
+          fill_in '現在のパスワード', with: 'wrongpass'
+          fill_in 'パスワード', with: 'newpassword'
+          fill_in '確認用パスワード', with: 'newpassword'
+          click_button '更新する'
+          expect(page).to have_content '入力に誤りがあります'
+        end
       end
 
-      it 'パスワードが空で登録できない' do
-        fill_in '現在のパスワード', with: ''
-        fill_in 'パスワード', with: ''
-        fill_in '確認用パスワード', with: ''
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
+      context 'パスワードが無いとき' do
+        it 'パスワードが更新できないこと' do
+          fill_in '現在のパスワード', with: ''
+          fill_in 'パスワード', with: ''
+          fill_in '確認用パスワード', with: ''
+          click_button '更新する'
+          expect(page).to have_content '入力に誤りがあります'
+        end
       end
 
-      it '確認用パスワードが異なり登録できない' do
-        fill_in '現在のパスワード', with: @user.password
-        fill_in 'パスワード', with: 'newpassword'
-        fill_in '確認用パスワード', with: 'newpassword2'
-        click_button '更新する'
-        expect(page).to have_content '入力に誤りがあります'
+      context '確認用パスワードが異なるとき' do
+        it 'パスワードが更新できないこと' do
+          fill_in '現在のパスワード', with: user.password
+          fill_in 'パスワード', with: 'newpassword'
+          fill_in '確認用パスワード', with: 'newpassword2'
+          click_button '更新する'
+          expect(page).to have_content '入力に誤りがあります'
+        end
       end
     end
   end

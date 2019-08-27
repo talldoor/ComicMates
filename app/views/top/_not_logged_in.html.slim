@@ -1,10 +1,9 @@
-main
-  .jumbotron.jumbotron-fluid.text-center.text-white.bg-success
-    .container
-      h1.display-2 ComicMates
-      p.lead お気に入りの漫画をシェアしよう
-  .py-4.bg-light
-    = render partial: 'shared/article_cards', locals: { articles: @articles }
-    .row.mt-4
-      .mx-auto
-        = paginate @articles
+.jumbotron.jumbotron-fluid.text-center
+  .container
+    h1.display-2 ComicMates
+    p.lead お気に入りの漫画をシェアしよう
+.py-4
+  = render partial: 'shared/article_cards', locals: { articles: @articles }
+  .row.mt-4
+    .mx-auto
+      = paginate @articles

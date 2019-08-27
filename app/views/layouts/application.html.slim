@@ -8,13 +8,10 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    = render 'layouts/header'
-    - if notice
-      .notice
-        = flash[:notice]
-    - elsif alert
-      .alert
-        = flash[:alert]
-    = yield
-    = render 'layouts/footer'
+  body.bg-light
+    div#body-wrapper
+      = render 'layouts/header'
+      = render 'layouts/flash'
+      main
+        = yield
+      = render 'layouts/footer'

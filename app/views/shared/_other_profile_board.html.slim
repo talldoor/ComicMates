@@ -9,11 +9,14 @@
       - unless current_user == user
         = render partial: 'shared/follow_form', locals: { user: user }
     .col-md-8.pl-5
-      h3 = user.name + ' さん'
+      h3 = user.name + 'さん'
       p.mt-4 = user.self_introduction
       p.mt-4
         small マイベストコミックス
       .d-flex.flex-row.justify-content-start
-        small.border.mx-2.p-1 = user.my_book1
-        small.border.mx-2.p-1 = user.my_book2
-        small.border.mx-2.p-1 = user.my_book3
+        -if user.my_book1.present?
+          small.border.mx-2.p-1 = user.my_book1
+        -if user.my_book2.present?
+          small.border.mx-2.p-1 = user.my_book2
+        -if user.my_book3.present?
+          small.border.mx-2.p-1 = user.my_book3

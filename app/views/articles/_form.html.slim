@@ -4,12 +4,12 @@
         .text-center
           - if local_assigns[:edit_flag].present?
             - if @article.comic_image.attached?
-              = image_tag @article.comic_image
+              = image_tag @article.comic_image, class: 'image-specific'
             - else
-              = image_tag '/assets/comic_dummy.png', class: 'comic-image-default'
+              = image_tag '/assets/comic_dummy.png', class: 'image-default'
         .form-group.mt-3
           = f.label :new_comic_image, '作品の画像'
-          = f.file_field :new_comic_image, class: 'form-control'
+          = f.file_field :new_comic_image, class: 'form-control', id: 'comic_image'
         - if local_assigns[:edit_flag].present?
           .form-check
             = f.check_box :remove_comic_image, class: 'form-check-input'
@@ -21,10 +21,10 @@
         = f.label :comic_author
         = f.text_field :comic_author, class: 'form-control'
       .form-group.mt-3
-        = f.label :overview, '一言でどんな作品？'
+        = f.label :overview, '一言でどんな作品？（必須）'
         = f.text_area :overview, rows: 2, class: 'form-control', placeholder: '例）群像劇　歴史もの'
       .form-group.mt-3
         = f.label :detail, '感想'
         = f.text_area :detail, rows: 5, class: 'form-control', placeholder: 'レビューや感想を書く'
       .form-group.text-center.my-5
-        = f.submit '更新する', class: 'btn btn-primary'
+        = f.submit '更新する', class: 'btn default-btn'
