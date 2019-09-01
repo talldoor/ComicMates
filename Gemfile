@@ -16,6 +16,7 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
+gem 'aws-sdk-s3', require: false
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
