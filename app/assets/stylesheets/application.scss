@@ -10,11 +10,13 @@ html, body {
   position:relative;
   min-height: 100%;
 }
-#navbarDropdown {
-   img{
-    width: 35px;
-    height: 35px;
-  }
+header {
+  #navbarDropdown {
+    img{
+     width: 35px;
+     height: 35px;
+   }
+ }
 }
 main {
   padding-bottom: 70px;
@@ -92,14 +94,16 @@ a {
 .jumbotron {
   background-image: url('top_page.jpg');
   background-size: cover;
-  background-position: center 47%;
+  background-position: center 75%;
   margin: 0px;
   .container {
     h1 {
-      color: #7fffd4;
+      color: #fff;
+      font-size: 8vw;
     }
     p {
-      color: #7fffd4;
+      color: #fff;
+      font-size: 2vw;
     }
   }
 }
