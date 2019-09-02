@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: comicmates_production
   username: comicmates
   password: <%= ENV['COMICMATES_DATABASE_PASSWORD'] %>
