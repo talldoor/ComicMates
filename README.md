@@ -1,24 +1,49 @@
-# README
+# ComicMates
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+おすすめ漫画の共有SNSです。  
+漫画の紹介記事や気になるユーザーをフォローすることにより、自分の漫画の世界を広げることができます。
 
-Things you may want to cover:
+## 機能
+- ユーザー管理機能
+  - 新規ユーザー登録
+  - ログイン（簡単ログイン機能を含む）
+  - プロフィール編集（画像アップロードを含む）
+  - プロフィール参照
+  - ユーザー一覧表示
+  - ユーザー検索
+- 記事管理機能
+  - 新規記事投稿（画像アップロードを含む）
+  - 記事編集・削除
+  - 記事詳細表示
+  - 記事一覧表示
+  - 記事検索
+- フォロー機能
+  - フォロー登録・解除（Ajax）
+  - フォロー、フォロワーの一覧表示
+- お気に入り機能
+  - お気に入り登録・解除（Ajax）
+  - お気に入り登録した記事の一覧表示
+- コメント機能
+  - 各記事へのコメント登録・削除
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用技術
+- 言語
+  - Ruby（2.5.1）
+- フレームワーク
+  - Ruby on Rails（5.2.3）
+- DB
+  - MySQL（開発環境）
+  - PostgreSQL（本番環境）	
+- フロントエンド
+  - Slim
+  - Bootstrap4（レスポンシブ対応）
+  - Font Awesome
+  - Sass
+- 使用した主なgem
+  - devise（ユーザー認証）
+  - kaminari（ページネーション）
+  - ransack（検索機能）
+  - RSpec（単体テスト・結合テスト）
+  - aws-sdk-s3（AWSのS3に画像アップロード）
+  - rubocop-airbnb（リンター）
