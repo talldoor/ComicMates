@@ -29,7 +29,7 @@
 
 ## 使用技術
 - 言語
-  - Ruby（2.5.1）
+  - Ruby（2.5.5）
 - フレームワーク
   - Ruby on Rails（5.2.3）
 - DB
@@ -37,7 +37,7 @@
   - PostgreSQL（本番環境）	
 - フロントエンド
   - Slim
-  - Bootstrap4（レスポンシブ対応）
+  - Bootstrap4
   - Font Awesome
   - Sass
 - 使用した主なgem
